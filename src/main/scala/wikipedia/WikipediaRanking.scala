@@ -26,7 +26,7 @@ object WikipediaRanking {
    *  Hint4: no need to search in the title :)
    */
   def occurrencesOfLang(lang: String, rdd: RDD[WikipediaArticle]): Int = rdd.aggregate(0)(
-    (occ: Int, article: WikipediaArticle) => article.title.split(" ")
+    (occ: Int, article: WikipediaArticle) => article.text.split(" ")
       .map(_.toLowerCase).count(w => w == lang.toLowerCase),
     (o1: Int, o2: Int) => o1 + o2
   )
